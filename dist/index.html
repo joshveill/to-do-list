@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theta Tasks</title>
+    <link rel="stylesheet" href="styles.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script defer src="main.js"></script>
+  </head>
+  <body>
+    <div id="navBar" class="nav-bar">
+      <div class="title-nav">
+        <img src="theta.png" alt="" />
+        <h2>Theta Tasks</h2>
+      </div>
+      <button id="taskPad" class="default-project project-hover">
+        Task Pad
+      </button>
+      <div class="title-and-add-project">
+        <h3>Projects</h3>
+        <form class="new-project-form" action="" data-new-list-form>
+          <input
+            type="text"
+            placeholder="Project Name"
+            class="input-new-project"
+            data-new-list-input
+          />
+          <button type="submit" class="add-project">+</button>
+        </form>
+      </div>
+
+      <div class="projects" id="projects"></div>
+    </div>
+
+    <div class="display-right">
+      <button id="addTask" class="add-task-button">Add Task</button>
+      <div id="taskContent" class="task-content"></div>
+    </div>
+    <!-- html for the modal and overlay to cover background -->
+    <div class="overlay" id="overlay"></div>
+    <div class="modal" id="modal">
+      <div class="container">
+        <div class="btn-close-modal">
+          <button id="closeModal" class="close-modal">X</button>
+        </div>
+        <form action="" id="taskForm">
+          <div class="form-header">Task</div>
+          <input
+            type="text"
+            placeholder=" Title"
+            id="taskTitle"
+            class="form-title form-spec"
+          />
+          <textarea
+            class="form-description form-spec"
+            placeholder=" Description"
+            id="taskDescription"
+            name="textarea"
+            style="width: auto"
+          ></textarea>
+          <div class="date-priority">
+            <select name="Priority" id="taskPriority" class="dropdown-priority">
+              <option value="Urgent">Urgent</option>
+              <option value="Moderate">Moderate</option>
+              <option value="Low">Low</option>
+            </select>
+            <input
+              type="date"
+              placeholder=" Due Date"
+              id="taskDate"
+              class="form-due-date"
+            />
+          </div>
+          <input
+            type="submit"
+            id="submitTask"
+            class="submit-form"
+            value="Add Task"
+          />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

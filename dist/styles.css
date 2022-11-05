@@ -1,0 +1,361 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --light-grey: #c0c0c0;
+  --lighter-grey: #e6e6e6;
+  --button-hover: linear-gradient(
+    -45deg,
+    rgba(0, 0, 0, 0.22),
+    rgba(255, 255, 255, 0.25)
+  );
+}
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  display: flex;
+}
+
+.nav-bar {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  height: 100vh;
+  background-color: var(--light-grey);
+  align-items: center;
+}
+
+.title-nav {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+}
+
+img {
+  height: 40px;
+  width: auto;
+}
+
+h2 {
+  margin-left: 15px;
+  font-size: 30px;
+}
+
+.default-project {
+  width: 75%;
+  margin-top: 70px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  background-color: var(--lighter-grey);
+  box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+    -6px -6px 12px 0 rgba(255, 255, 255, 0.3);
+}
+
+.project-hover:hover {
+  background: var(--button-hover);
+  cursor: pointer;
+  transform: translateY(-3px);
+}
+
+.title-and-add-project {
+  width: 80%;
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+h3 {
+  font-size: 25px;
+}
+
+.new-project-form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-new-project {
+  width: 70%;
+  /* margin-left: 10px; */
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+}
+
+.add-project {
+  font-size: 3rem;
+  border: none;
+  background: none;
+}
+
+.add-project:hover {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.projects {
+  height: auto;
+  background-color: #c0c0c0;
+  width: 85%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 20px 20px 0px 20px;
+  box-shadow: inset 8px 8px 16px 0 rgba(0, 0, 0, 0.2),
+    inset -8px -8px 16px 0 rgba(255, 255, 255, 0.4);
+}
+
+.project-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0 10px 0 10px;
+  height: 50px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  background-color: var(--lighter-grey);
+}
+
+.project-delete-button {
+  position: absolute;
+  right: 10px;
+  z-index: 10;
+}
+
+.display-right {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  height: 100vh;
+  align-items: center;
+}
+
+.add-task-button {
+  width: 100px;
+  margin-top: 20px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  background-color: white;
+  box-shadow: 6px 6px 12px 0 rgba(0, 0, 0, 0.25);
+}
+
+.add-task-button:hover {
+  background: var(--button-hover);
+  cursor: pointer;
+  transform: translateY(-3px);
+}
+
+.task-content {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-rows: 325px;
+  gap: 30px;
+  padding: 30px;
+}
+
+.task-item {
+  border-radius: 7px;
+  background-color: var(--lighter-grey);
+  box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  position: relative;
+}
+
+h4 {
+  font-size: 1.3rem;
+  margin-top: 35px;
+  align-content: flex-start;
+}
+
+.item-description {
+  margin-top: 15px;
+  font-size: 1.1rem;
+}
+
+.task-item-priority {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+
+.task-item-due-date {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.delete-task {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.checkbox-group {
+  display: flex;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.label-checkbox {
+  margin-left: 10px;
+}
+.delete-task:hover {
+  cursor: pointer;
+}
+
+/* modal css */
+.modal {
+  z-index: 1;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.overlay {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  height: 100%;
+  width: 100%;
+  z-index: 1000;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 425px;
+  border-radius: 10px;
+  background-color: var(--lighter-grey);
+  border-style: none;
+  padding: 0px 0px 15px 0px;
+}
+
+.form-header {
+  align-self: center;
+  font-size: 2rem;
+}
+
+.form-title {
+  margin: 10px 10px;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.form-description {
+  margin: 10px 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  height: 150px;
+}
+
+.date-priority {
+  display: flex;
+  justify-content: space-around;
+}
+
+.form-due-date {
+  width: 50%;
+  margin: 10px 10px;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.dropdown-priority {
+  width: 50%;
+  margin: 10px 10px;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.submit-form {
+  width: 120px;
+  height: 50px;
+  border-radius: 5px;
+  border: var(--light-grey) 1px solid;
+  margin-top: 20px;
+  align-self: center;
+}
+
+.submit-form:hover {
+  background: var(--button-hover);
+  cursor: pointer;
+  transform: translateY(-3px);
+}
+
+.btn-close-modal {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-modal {
+  margin: 5px 5px 0 0;
+  height: 20px;
+  border-style: none;
+  background-color: var(--lighter-grey);
+  cursor: pointer;
+}
+
+/* following the tutorial */
+
+.active-list {
+  background-color: rgb(109, 109, 109);
+  cursor: pointer;
+}
