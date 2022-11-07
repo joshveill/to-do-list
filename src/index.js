@@ -55,7 +55,7 @@ submitTaskForm.addEventListener("click", (e) => {
     projectList.tasks.unshift(task);
   }
 
-  renderTasks();
+  saveAndRender();
   form.reset();
 });
 
@@ -73,55 +73,45 @@ function listIdentifyier() {
 }
 
 function renderTasks() {
-  taskContent = document.getElementById("taskContent");
+  const taskContent = document.getElementById("taskContent");
   clearElement(taskContent);
 
   let taskList = listIdentifyier();
 
   taskList.forEach((task) => {
-    taskContainer = document.getElementById("taskContent");
-    taskItem = document.createElement("div");
+    const taskItem = document.createElement("div");
     taskItem.classList.add("task-item");
 
-    priorityItem = document.createElement("div");
+    let priorityItem = document.createElement("div");
     priorityItem.classList.add("task-item-priority");
     priorityItem.innerText = task.priority;
-    dateItem = document.createElement("div");
+    let dateItem = document.createElement("div");
     dateItem.classList.add("task-item-due-date");
     dateItem.innerText = task.date;
-    titleItem = document.createElement("h4");
+    let titleItem = document.createElement("h4");
     titleItem.innerText = task.title;
-    descriptionItem = document.createElement("p");
+    const descriptionItem = document.createElement("p");
     descriptionItem.classList.add("item-description");
     descriptionItem.innerText = task.description;
 
-    checkboxGroup = document.createElement("div");
+    let checkboxGroup = document.createElement("div");
     checkboxGroup.classList.add("checkbox-group");
-    checkboxItem = document.createElement("input");
-    checkboxItem.addEventListener("click", () => {
-      taskContainer.removeChild(taskItem);
-      taskList.splice(taskItem, 1);
+    let checkboxItem = document.createElement("input");
+    checkboxItem.addEventListener("click", removeTask());
 
-      saveAndRender();
-    });
     checkboxItem.classList.add("checkbox-input");
     checkboxItem.type = "checkbox";
     checkboxItem.name = "checkbox";
-    labelItem = document.createElement("label");
+    let labelItem = document.createElement("label");
     labelItem.for = "checkbox";
     labelItem.classList.add("label-checkbox");
     labelItem.innerText = "Completed";
     checkboxGroup.appendChild(checkboxItem);
     checkboxGroup.appendChild(labelItem);
 
-    deleteItem = document.createElement("i");
+    let deleteItem = document.createElement("i");
     deleteItem.classList.add("fa", "fa-trash", "delete-task");
-    deleteItem.addEventListener("click", () => {
-      taskContainer.removeChild(taskItem);
-      taskList.splice(taskItem, 1);
-
-      saveAndRender();
-    });
+    deleteItem.addEventListener("click", removeTask());
 
     taskItem.appendChild(deleteItem);
     taskItem.appendChild(checkboxGroup);
@@ -130,8 +120,27 @@ function renderTasks() {
     taskItem.appendChild(dateItem);
     taskItem.appendChild(priorityItem);
 
-    taskContainer.appendChild(taskItem);
+    taskContent.appendChild(taskItem);
   });
+}
+
+function removeTask() {
+  if (selectedListId === "taskPad") {
+    taskPadLists = taskPadLists.filter((todo) => {
+      return todo !== task;
+    });
+  } else {
+    let currList = lists.find((list) => {
+      return list.id === selectedListId;
+    });
+
+    taskList = currList.tasks.filter((todos) => {
+      return todos !== task;
+    });
+
+    currList.tasks = taskList;
+  }
+  saveAndRender();
 }
 
 function createTask(title, description, priority, date) {
@@ -151,7 +160,6 @@ taskPad.addEventListener("click", (e) => {
   selectedListId = "taskPad";
   taskPad.classList.add("active-list");
   taskPad.classList.remove("project-hover");
-  renderTasks();
   saveAndRender();
 });
 
@@ -164,8 +172,6 @@ projectContainer.addEventListener("click", (e) => {
     let projectList = lists.find((list) => {
       return list.id === selectedListId;
     });
-    renderTasks();
-
     saveAndRender();
   }
 });
